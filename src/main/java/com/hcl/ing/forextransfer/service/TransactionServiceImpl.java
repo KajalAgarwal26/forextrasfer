@@ -29,12 +29,12 @@ public class TransactionServiceImpl implements TransactionService {
 		TransactionResponseDTO transactionResponseDTO = new TransactionResponseDTO();
 
 		Transactions fromTransactions = new Transactions();
-		Optional<Accounts> fromAccountDetails = getAccountByID(transferRequestDTO.getFromAccount());
+		Optional<Accounts> fromAccountDetails = getAccountByID(transferRequestDTO.getFromAccountNumber());
 		if (!fromAccountDetails.isPresent()) {
-			throw new InvalidAccountNumber(transferRequestDTO.getFromAccount() + " is not available");
+			throw new InvalidAccountNumber(transferRequestDTO.getFromAccountNumber() + " is not available");
 		} else {
 			fromTransactions.setUserId(fromAccountDetails.get().getUserId());
-			fromTransactions.setAccountNumber(transferRequestDTO.getFromAccount());
+			fromTransactions.setAccountNumber(transferRequestDTO.getFromAccountNumber());
 			Double fromAmount = transferRequestDTO.getFromAmount();
 			Double charges = transferRequestDTO.getCharges();
 			fromTransactions.setAmount(fromAmount + charges);
@@ -46,13 +46,13 @@ public class TransactionServiceImpl implements TransactionService {
 			transactionRepository.save(fromTransactions);
 		}
 		Transactions toTransactions = new Transactions();
-		Optional<Accounts> toAccountDetails = getAccountByID(transferRequestDTO.getToAccount());
+		Optional<Accounts> toAccountDetails = getAccountByID(transferRequestDTO.getToAccountNumber());
 		if (!toAccountDetails.isPresent()) {
-			throw new InvalidAccountNumber(transferRequestDTO.getToAccount() + " is not available");
+			throw new InvalidAccountNumber(transferRequestDTO.getToAccountNumber() + " is not available");
 		} else {
 			toTransactions.setUserId(toAccountDetails.get().getUserId());
-			toTransactions.setAccountNumber(transferRequestDTO.getToAccount());
-			toTransactions.setAmount(transferRequestDTO.getToAMount());
+			toTransactions.setAccountNumber(transferRequestDTO.getToAccountNumber());
+			toTransactions.setAmount(transferRequestDTO.getToAmount());
 			toTransactions.setCurrency(transferRequestDTO.getToCurrency());
 			toTransactions.setDescription(transferRequestDTO.getDescription());
 			toTransactions.setTransactionType("CREDIT");

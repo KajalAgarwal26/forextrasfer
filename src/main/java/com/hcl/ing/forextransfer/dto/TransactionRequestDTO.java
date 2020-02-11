@@ -9,21 +9,19 @@ public class TransactionRequestDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Long fromAccount;
+	private Long fromAccountNumber;
 	private Double fromAmount;
 	private String fromCurrency; 
-	private Long toAccount;
-	private Double toAMount;
+	private Long toAccountNumber;
+	private Double toAmount;
 	private String toCurrency;
 	private String description;
 	private Double charges;
-	
-	
-	public Long getFromAccount() {
-		return fromAccount;
+	public Long getFromAccountNumber() {
+		return fromAccountNumber;
 	}
-	public void setFromAccount(Long fromAccount) {
-		this.fromAccount = fromAccount;
+	public void setFromAccountNumber(Long fromAccountNumber) {
+		this.fromAccountNumber = fromAccountNumber;
 	}
 	public Double getFromAmount() {
 		return fromAmount;
@@ -37,17 +35,17 @@ public class TransactionRequestDTO implements Serializable{
 	public void setFromCurrency(String fromCurrency) {
 		this.fromCurrency = fromCurrency;
 	}
-	public Long getToAccount() {
-		return toAccount;
+	public Long getToAccountNumber() {
+		return toAccountNumber;
 	}
-	public void setToAccount(Long toAccount) {
-		this.toAccount = toAccount;
+	public void setToAccountNumber(Long toAccountNumber) {
+		this.toAccountNumber = toAccountNumber;
 	}
-	public Double getToAMount() {
-		return toAMount;
+	public Double getToAmount() {
+		return toAmount;
 	}
-	public void setToAMount(Double toAMount) {
-		this.toAMount = toAMount;
+	public void setToAmount(Double toAmount) {
+		this.toAmount = toAmount;
 	}
 	public String getToCurrency() {
 		return toCurrency;
@@ -61,21 +59,26 @@ public class TransactionRequestDTO implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public Double getCharges() {
+		return charges;
+	}
+	public void setCharges(Double charges) {
+		this.charges = charges;
+	}
 	@Override
 	public String toString() {
-		return "TransactionRequestDTO [fromAccount=" + fromAccount + ", fromAmount=" + fromAmount + ", fromCurrency="
-				+ fromCurrency + ", toAccount=" + toAccount + ", toAMount=" + toAMount + ", toCurrency=" + toCurrency
-				+ ", description=" + description + ", charges=" + charges + "]";
+		return "TransactionRequestDTO [fromAccountNumber=" + fromAccountNumber + ", fromAmount=" + fromAmount
+				+ ", fromCurrency=" + fromCurrency + ", toAccountNumber=" + toAccountNumber + ", toAmount=" + toAmount
+				+ ", toCurrency=" + toCurrency + ", description=" + description + ", charges=" + charges + "]";
 	}
-	
-	public TransactionRequestDTO(Long fromAccount, Double fromAmount, String fromCurrency, Long toAccount,
-			Double toAMount, String toCurrency, String description, Double charges) {
+	public TransactionRequestDTO(Long fromAccountNumber, Double fromAmount, String fromCurrency, Long toAccountNumber,
+			Double toAmount, String toCurrency, String description, Double charges) {
 		super();
-		this.fromAccount = fromAccount;
+		this.fromAccountNumber = fromAccountNumber;
 		this.fromAmount = fromAmount;
 		this.fromCurrency = fromCurrency;
-		this.toAccount = toAccount;
-		this.toAMount = toAMount;
+		this.toAccountNumber = toAccountNumber;
+		this.toAmount = toAmount;
 		this.toCurrency = toCurrency;
 		this.description = description;
 		this.charges = charges;
@@ -83,12 +86,7 @@ public class TransactionRequestDTO implements Serializable{
 	public TransactionRequestDTO() {
 		super();
 	}
-	public Double getCharges() {
-		return charges;
-	}
-	public void setCharges(Double charges) {
-		this.charges = charges;
-	}
+	
 	
 	
 
