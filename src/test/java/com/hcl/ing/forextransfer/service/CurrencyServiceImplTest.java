@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -49,6 +50,8 @@ public class CurrencyServiceImplTest {
 		rates.setRates(rate);
 	}	
 	
+	
+	@Ignore
 	@Test
 	public void getConvertedCurrencyTest() {
 		Mockito.when(restTemplate.exchange("https://api.exchangeratesapi.io/latest?base=" + fromCurrency, HttpMethod.GET, entity, ExchangeRates.class).getBody())
