@@ -1,16 +1,16 @@
 package com.hcl.ing.forextransfer.helper;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class ExchangeRates {
 	
-	private HashMap<String, Double> rates;
+	private Map<String, Double> rates;
 
-	public HashMap<String, Double> getRates() {
+	public Map<String, Double> getRates() {
 		return rates;
 	}
 
-	public void setRates(HashMap<String, Double> rates) {
+	public void setRates(Map<String, Double> rates) {
 		this.rates = rates;
 	}
 }
