@@ -12,50 +12,33 @@ import com.hcl.ing.forextransfer.util.LibraryUtil;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-	/**
-	 * @author Shankar This method is used to handle all runtime exception
-	 *
-	 * @param exection
-	 * @return ApiExceptionDto with message
-	 *//*
-	@ExceptionHandler(RuntimeException.class)
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ResponseBody
-	public final ApiExceptionDto handleAllRuntimeExceptions(RuntimeException exection) {
-		String defaultMessage = exection.getMessage();
-		return new ApiExceptionDto(ApiConstant.INTERNAL_SERVER_ERROR, defaultMessage);
+	@ExceptionHandler(InsufficientFundException.class)
+
+	public ResponseEntity<ResponseDto> InsufficientFundException() {
+
+		ResponseDto responseDto = new ResponseDto();
+
+		responseDto.setMessage("Insufficient Funds");
+
+		responseDto.setStatusCode(400);
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
+
 	}
 
-	*//**
-	 * @author Shankar This method is used to handle all exception
-	 *
-	 * @param exection
-	 * @return ApiExceptionDto with message
-	 *//*
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ResponseBody
-	public final ApiExceptionDto handleAllExceptions(Exception exection) {
-		String defaultMessage = exection.getMessage();
-		return new ApiExceptionDto(ApiConstant.INTERNAL_SERVER_ERROR, defaultMessage);
-	}
+	@ExceptionHandler(InvalidAccountNumber.class)
 
-	*//**
-	 * @author Shankar This method is used to handle all null pointer exception
-	 *
-	 * @param exection
-	 * @return ApiExceptionDto with message
-	 *//*
-	@ExceptionHandler(NullPointerException.class)
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	@ResponseBody
-	public final ApiExceptionDto handleNullPointerExceptions(NullPointerException exection) {
-		String defaultMessage = exection.getMessage();
-		return new ApiExceptionDto(ApiConstant.NO_ELEMENT_FOUND, defaultMessage);
-	}
-*/
-	
+	public ResponseEntity<ResponseDto> InvalidAccountNumber() {
 
+		ResponseDto responseDto = new ResponseDto();
+
+		responseDto.setMessage("Invalid account no");
+
+		responseDto.setStatusCode(404);
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
+
+	}
 
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<ResponseDto> UserNotFoundeException() {
@@ -64,5 +47,5 @@ public class GlobalExceptionHandler {
 		responseDto.setStatusCode(ApplicationConstants.NOTFOUND_CODE);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseDto);
 	}
-	
+
 }

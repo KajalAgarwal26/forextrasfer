@@ -37,7 +37,7 @@ public class UserController {
 		 * @throws UserNotFoundException 
 		 */
 	 @PostMapping(value = "/login") 
-	 public LoginResponseDto usersLogin(@RequestBody LoginDto loginDto) throws UserNotFoundException { 
+	 public LoginResponseDto usersLogin(@RequestBody LoginDto loginDto) { 
 		 LOGGER.info(LibraryUtil.LOGIN_METHOD);
 		 return userService.usersLogin(loginDto);
 	 }

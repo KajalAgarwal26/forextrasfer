@@ -17,7 +17,7 @@ public class AccountServiceImpl implements AccountService {
 	AccountRepository accountRepository;
 
 	@Override
-	public AccountResponseDTO getAccountDetails(Long userId) throws UserNotFoundException {
+	public AccountResponseDTO getAccountDetails(Long userId) {
 
 		Accounts accounts = accountRepository.findByUserId(userId);
 		AccountResponseDTO accountResponseDTO = new AccountResponseDTO();

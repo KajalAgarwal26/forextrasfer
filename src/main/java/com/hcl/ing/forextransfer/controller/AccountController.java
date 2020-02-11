@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.ing.forextransfer.dto.AccountResponseDTO;
-import com.hcl.ing.forextransfer.exception.UserNotFoundException;
 import com.hcl.ing.forextransfer.service.AccountService;
 
 @RestController
@@ -22,7 +21,7 @@ public class AccountController {
 	AccountService accountService;	
 	
 	@GetMapping("/getAccount/{userId}")
-	public ResponseEntity<AccountResponseDTO> getAccountDetails(@PathVariable("userId") Long userId) throws UserNotFoundException {
+	public ResponseEntity<AccountResponseDTO> getAccountDetails(@PathVariable("userId") Long userId) {
 		AccountResponseDTO accountResponseDTO=	accountService.getAccountDetails(userId);		
 		return new ResponseEntity<>(accountResponseDTO,HttpStatus.OK);
 	}
