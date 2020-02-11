@@ -1,4 +1,4 @@
-package com.hcl.ing.forextransfer.controllerTest;
+package com.hcl.ing.forextransfer.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

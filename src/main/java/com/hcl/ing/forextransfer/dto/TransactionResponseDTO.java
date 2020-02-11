@@ -1,6 +1,6 @@
 package com.hcl.ing.forextransfer.dto;
 
-import java.util.Optional;
+import java.util.List;
 
 import com.hcl.ing.forextransfer.entity.Transactions;
 
@@ -10,12 +10,12 @@ public class TransactionResponseDTO {
 	private Integer statusCode;
 	private String status;
 	
-	private Optional<Transactions> transactions;
+	private List<Transactions> transactions;
 	
-	public Optional<Transactions> getTransactions() {
+	public List<Transactions> getTransactions() {
 		return transactions;
 	}
-	public void setTransactions(Optional<Transactions> transactions) {
+	public void setTransactions(List<Transactions> transactions) {
 		this.transactions = transactions;
 	}
 	public String getMessage() {
