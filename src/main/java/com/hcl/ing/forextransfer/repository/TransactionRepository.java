@@ -11,8 +11,5 @@ public interface TransactionRepository extends JpaRepository<Transactions, Long>
 
 	List<Transactions> findByStatusAndTransactionType(String status, String transactionType);
 
-	List<Transactions> getByTransactionRefId(Double refId);
-
-	Transactions findByRefIdAndTransactionType(long refId, String string);
-	
+	Transactions findByRefIdAndTransactionType(long refId, String string);	
 }

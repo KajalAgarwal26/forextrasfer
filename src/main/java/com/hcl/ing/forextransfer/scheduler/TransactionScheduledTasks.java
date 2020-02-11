@@ -17,16 +17,15 @@ import com.hcl.ing.forextransfer.service.TransactionService;
 @Component
 public class TransactionScheduledTasks {
 	
-	private static final Logger log = LoggerFactory.getLogger(TransactionScheduledTasks.class);
-
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	private static final Logger logger = LoggerFactory.getLogger(TransactionScheduledTasks.class);
 	
 	@Autowired
 	TransactionService transactionService;
 	
 	@Scheduled(fixedRate = 10000)
 	public void reportCurrentTime() throws AccountNotFoundException {		
-		log.info("The time is now {}", dateFormat.format(new Date()));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		logger.info("The time is now {}", dateFormat.format(new Date()));
 		transactionService.submitTransaction();		
 	}
 }
