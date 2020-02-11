@@ -16,6 +16,7 @@ import com.hcl.ing.forextransfer.entity.Accounts;
 import com.hcl.ing.forextransfer.entity.Transactions;
 import com.hcl.ing.forextransfer.exception.InsufficientFundException;
 import com.hcl.ing.forextransfer.exception.InvalidAccountNumber;
+import com.hcl.ing.forextransfer.exception.UserNotFoundException;
 import com.hcl.ing.forextransfer.repository.AccountRepository;
 import com.hcl.ing.forextransfer.repository.TransactionRepository;
 
@@ -115,4 +116,19 @@ public class TransactionServiceImpl implements TransactionService {
 			}
 		}
 	}
+	
+	@Override
+    public TransactionResponseDTO viewTransactionsById(Long userId) {
+           
+           TransactionResponseDTO transactionResponseDTO=new TransactionResponseDTO();
+           if(userId==null) {
+                  throw new UserNotFoundException("user not found");
+           }else {
+           Optional<Transactions> transactionResp = transactionRepository.findById(userId);
+           transactionResponseDTO.setTransactions(transactionResp);
+           
+           }
+           return transactionResponseDTO;
+    }
+
 }

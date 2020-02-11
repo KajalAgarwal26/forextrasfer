@@ -11,4 +11,6 @@ public interface TransactionService {
 
 	void submitTransaction() throws AccountNotFoundException;
 
+	TransactionResponseDTO viewTransactionsById(Long userId);
+
 }
