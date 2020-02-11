@@ -10,21 +10,24 @@ public class TransactionRequestDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long fromAccount;
-	private Long fromAmount;
+	private Double fromAmount;
 	private String fromCurrency; 
 	private Long toAccount;
-	private Long toAMount;
+	private Double toAMount;
 	private String toCurrency;
+	private String description;
+	
+	
 	public Long getFromAccount() {
 		return fromAccount;
 	}
 	public void setFromAccount(Long fromAccount) {
 		this.fromAccount = fromAccount;
 	}
-	public Long getFromAmount() {
+	public Double getFromAmount() {
 		return fromAmount;
 	}
-	public void setFromAmount(Long fromAmount) {
+	public void setFromAmount(Double fromAmount) {
 		this.fromAmount = fromAmount;
 	}
 	public String getFromCurrency() {
@@ -39,10 +42,10 @@ public class TransactionRequestDTO implements Serializable{
 	public void setToAccount(Long toAccount) {
 		this.toAccount = toAccount;
 	}
-	public Long getToAMount() {
+	public Double getToAMount() {
 		return toAMount;
 	}
-	public void setToAMount(Long toAMount) {
+	public void setToAMount(Double toAMount) {
 		this.toAMount = toAMount;
 	}
 	public String getToCurrency() {
@@ -51,14 +54,20 @@ public class TransactionRequestDTO implements Serializable{
 	public void setToCurrency(String toCurrency) {
 		this.toCurrency = toCurrency;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	@Override
 	public String toString() {
 		return "TransactionRequestDTO [fromAccount=" + fromAccount + ", fromAmount=" + fromAmount + ", fromCurrency="
 				+ fromCurrency + ", toAccount=" + toAccount + ", toAMount=" + toAMount + ", toCurrency=" + toCurrency
-				+ "]";
+				+ ", description=" + description + "]";
 	}
-	public TransactionRequestDTO(Long fromAccount, Long fromAmount, String fromCurrency, Long toAccount, Long toAMount,
-			String toCurrency) {
+	public TransactionRequestDTO(Long fromAccount, Double fromAmount, String fromCurrency, Long toAccount,
+			Double toAMount, String toCurrency, String description) {
 		super();
 		this.fromAccount = fromAccount;
 		this.fromAmount = fromAmount;
@@ -66,6 +75,7 @@ public class TransactionRequestDTO implements Serializable{
 		this.toAccount = toAccount;
 		this.toAMount = toAMount;
 		this.toCurrency = toCurrency;
+		this.description = description;
 	}
 	public TransactionRequestDTO() {
 		super();
