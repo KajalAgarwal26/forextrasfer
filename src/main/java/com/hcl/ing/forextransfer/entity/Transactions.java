@@ -17,6 +17,7 @@ public class Transactions {
 	private String currency; 
 	private String description;
 	private String status;
+	private String transactionDate;
 	private Long userId;
 	
 	public Long getTransactionId() {
@@ -66,5 +67,11 @@ public class Transactions {
 	}
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+	public String getTransactionDate() {
+		return transactionDate;
+	}
+	public void setTransactionDate(String transactionDate) {
+		this.transactionDate = transactionDate;
 	}
 }
