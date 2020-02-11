@@ -19,6 +19,7 @@ import com.hcl.ing.forextransfer.exception.InvalidAccountNumber;
 import com.hcl.ing.forextransfer.exception.UserNotFoundException;
 import com.hcl.ing.forextransfer.repository.AccountRepository;
 import com.hcl.ing.forextransfer.repository.TransactionRepository;
+import com.hcl.ing.forextransfer.util.ApplicationConstants;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -33,7 +34,7 @@ public class TransactionServiceImpl implements TransactionService {
 	public TransactionResponseDTO confirmTransaction(TransactionRequestDTO transferRequestDTO) {
 		TransactionResponseDTO transactionResponseDTO = new TransactionResponseDTO();
 		
-		long refId = (long) Math.random();
+		long refId = (long) (Math.random() * 100);
 		Transactions fromTransactions = new Transactions();
 		Optional<Accounts> fromAccountDetails = getAccountByID(transferRequestDTO.getFromAccountNumber());
 		if (!fromAccountDetails.isPresent()) {
@@ -46,8 +47,8 @@ public class TransactionServiceImpl implements TransactionService {
 			fromTransactions.setAmount(fromAmount + charges);
 			fromTransactions.setCurrency(transferRequestDTO.getFromCurrency());
 			fromTransactions.setDescription(transferRequestDTO.getDescription());
-			fromTransactions.setTransactionType("DEBIT");
-			fromTransactions.setStatus("Pending");
+			fromTransactions.setTransactionType(ApplicationConstants.DEBIT);
+			fromTransactions.setStatus(ApplicationConstants.PENDING);
 			fromTransactions.setRefId(refId);
 			fromTransactions.setTransactionDate(LocalDateTime.now().toString());
 			transactionRepository.save(fromTransactions);
@@ -62,8 +63,8 @@ public class TransactionServiceImpl implements TransactionService {
 			toTransactions.setAmount(transferRequestDTO.getToAmount());
 			toTransactions.setCurrency(transferRequestDTO.getToCurrency());
 			toTransactions.setDescription(transferRequestDTO.getDescription());
-			toTransactions.setTransactionType("CREDIT");
-			toTransactions.setStatus("Pending");
+			toTransactions.setTransactionType(ApplicationConstants.CREDIT);
+			toTransactions.setStatus(ApplicationConstants.PENDING);
 			toTransactions.setRefId(refId);
 			toTransactions.setTransactionDate(LocalDateTime.now().toString());
 			transactionRepository.save(toTransactions);
@@ -84,7 +85,7 @@ public class TransactionServiceImpl implements TransactionService {
 	@Override
 	public void submitTransaction() throws AccountNotFoundException {
 		// step1: get all the pending transaction.
-		List<Transactions> transactions = transactionRepository.findByStatusAndTransactionType("Pending","DEBIT");
+		List<Transactions> transactions = transactionRepository.findByStatusAndTransactionType(ApplicationConstants.PENDING,ApplicationConstants.DEBIT);
 		if (!transactions.isEmpty()) {
 
 			// step2: check whether account number is valid.
@@ -105,7 +106,7 @@ public class TransactionServiceImpl implements TransactionService {
 					accountRepository.save(debitAccount.get());
 										
 					//credit transaction info
-					Transactions creditTransaction = transactionRepository.findByRefIdAndTransactionType(refId,"CREDIT");
+					Transactions creditTransaction = transactionRepository.findByRefIdAndTransactionType(refId,ApplicationConstants.CREDIT);
 					creditTransaction.setStatus("Completed");
 					transactionRepository.save(creditTransaction);
 					Optional<Accounts> creditAccount = accountRepository.findById(creditTransaction.getAccountNumber());
