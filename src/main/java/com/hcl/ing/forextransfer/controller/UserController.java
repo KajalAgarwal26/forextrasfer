@@ -15,21 +15,18 @@ import com.hcl.ing.forextransfer.exception.UserNotFoundException;
 import com.hcl.ing.forextransfer.service.UserService;
 import com.hcl.ing.forextransfer.util.LibraryUtil;
 
-
 /**
  * 
  * @author bojja.r
  * @version 1.0
  * @since 30-01-2020
  */
-
 @RestController
 @RequestMapping("/users")
 @CrossOrigin(allowedHeaders = {"*","*/"}, origins = {"*","*/"})
 public class UserController {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);	
 	
 	 @Autowired 
 	 UserService userService;
@@ -37,14 +34,11 @@ public class UserController {
 		 * This method is used to validating the user by providing the input as LoginDto 
 		 * @param loginDto
 		 * @return responseDTO 
-	 * @throws UserNotFoundException 
+		 * @throws UserNotFoundException 
 		 */
 	 @PostMapping(value = "/login") 
 	 public LoginResponseDto usersLogin(@RequestBody LoginDto loginDto) throws UserNotFoundException { 
 		 LOGGER.info(LibraryUtil.LOGIN_METHOD);
 		 return userService.usersLogin(loginDto);
 	 }
-	
-	
-
 }

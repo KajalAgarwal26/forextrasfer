@@ -7,7 +7,4 @@ import com.hcl.ing.forextransfer.exception.UserNotFoundException;
 public interface UserService {
 	
 	 LoginResponseDto usersLogin(LoginDto userDto) throws UserNotFoundException; 
-	 
-	
-
 }

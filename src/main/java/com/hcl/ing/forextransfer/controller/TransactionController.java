@@ -37,5 +37,4 @@ public class TransactionController {
 		 TransactionResponseDTO transferResponseDTO = transferService.confirmTransaction(transferRequestDTO);
 		 return new ResponseEntity<>(transferResponseDTO, HttpStatus.OK);
 	 }
-
 }

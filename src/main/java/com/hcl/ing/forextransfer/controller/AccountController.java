@@ -19,15 +19,11 @@ import com.hcl.ing.forextransfer.service.AccountService;
 public class AccountController {
 	
 	@Autowired
-	AccountService accountService;
-	
+	AccountService accountService;	
 	
 	@GetMapping("/getAccount/{userId}")
-	public ResponseEntity<AccountResponseDTO> getAccountDetails(@PathVariable("userId") Long userId) throws UserNotFoundException
-	{
-		AccountResponseDTO accountResponseDTO=	accountService.getAccountDetails(userId);
-		
+	public ResponseEntity<AccountResponseDTO> getAccountDetails(@PathVariable("userId") Long userId) throws UserNotFoundException {
+		AccountResponseDTO accountResponseDTO=	accountService.getAccountDetails(userId);		
 		return new ResponseEntity<>(accountResponseDTO,HttpStatus.OK);
 	}
-
 }
