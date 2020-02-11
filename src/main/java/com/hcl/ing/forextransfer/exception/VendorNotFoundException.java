@@ -8,5 +8,4 @@ public class VendorNotFoundException extends Exception{
 	{
 		super(message);
 	}
-
 }
