@@ -121,15 +121,17 @@ public class TransactionServiceImpl implements TransactionService {
 	@Override
     public TransactionResponseDTO viewTransactionsById(Long userId) {
            
-           TransactionResponseDTO transactionResponseDTO=new TransactionResponseDTO();
-           if(userId==null) {
-                  throw new UserNotFoundException("user not found");
-           }else {
-           Optional<Transactions> transactionResp = transactionRepository.findById(userId);
-           transactionResponseDTO.setTransactions(transactionResp);
-           
-           }
-           return transactionResponseDTO;
-    }
+		TransactionResponseDTO transactionResponseDTO=new TransactionResponseDTO();
+        if(userId==null) {
+               throw new UserNotFoundException("user not found");
+        }else {
+        List<Transactions> transactionResp = transactionRepository.findByUserId(userId);
+        transactionResponseDTO.setTransactions(transactionResp);
+        transactionResponseDTO.setMessage("success");
+        transactionResponseDTO.setStatusCode(HttpStatus.OK.value());
+        
+        }
+        return transactionResponseDTO;
+ }
 
 }
