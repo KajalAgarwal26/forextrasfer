@@ -1,4 +1,4 @@
-package com.hcl.ing.forextransfer.serviceTest;
+package com.hcl.ing.forextransfer.service;
 
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
