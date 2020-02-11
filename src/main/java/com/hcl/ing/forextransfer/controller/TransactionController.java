@@ -18,7 +18,7 @@ import com.hcl.ing.forextransfer.util.ForexUtil;
 
 
 @RestController
-@RequestMapping("/transfer")
+@RequestMapping("/transaction")
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 public class TransactionController {
 
@@ -31,7 +31,7 @@ public class TransactionController {
 		 * @param transferRequestDTO
 		 * @return transferRequestDTO 
 		 */
-	 @PostMapping(value = "/login") 
+	 @PostMapping(value = "/confirmTransaction") 
 	 public ResponseEntity<TransactionResponseDTO> confirmTransaction(@RequestBody TransactionRequestDTO transferRequestDTO) { 
 		 LOGGER.info(ForexUtil.LOGIN_METHOD);
 		 TransactionResponseDTO transferResponseDTO = transferService.confirmTransaction(transferRequestDTO);
