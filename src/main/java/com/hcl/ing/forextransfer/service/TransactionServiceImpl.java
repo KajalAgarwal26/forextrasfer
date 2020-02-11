@@ -100,13 +100,13 @@ public class TransactionServiceImpl implements TransactionService {
 				} 
 				else {
 					//debit transaction info.
-					debitTransaction.setStatus("Completed");
+					debitTransaction.setStatus(ApplicationConstants.COMPLETED);
 					transactionRepository.save(debitTransaction);					
 					debitAccount.get().setBalance(debitAccount.get().getBalance() - debitTransaction.getAmount());
 					accountRepository.save(debitAccount.get());
 										
 					//credit transaction info
-					Transactions creditTransaction = transactionRepository.findByRefIdAndTransactionType(refId,ApplicationConstants.CREDIT);
+					Transactions creditTransaction = transactionRepository.findByRefIdAndTransactionType(refId, ApplicationConstants.CREDIT);
 					creditTransaction.setStatus("Completed");
 					transactionRepository.save(creditTransaction);
 					Optional<Accounts> creditAccount = accountRepository.findById(creditTransaction.getAccountNumber());
