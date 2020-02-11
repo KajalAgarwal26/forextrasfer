@@ -1,10 +1,5 @@
 package com.hcl.ing.forextransfer.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +11,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.hcl.ing.forextransfer.dto.AccountResponseDTO;
 import com.hcl.ing.forextransfer.entity.Accounts;
-import com.hcl.ing.forextransfer.exception.UserNotFoundException;
 import com.hcl.ing.forextransfer.repository.AccountRepository;
 import com.hcl.ing.forextransfer.service.AccountServiceImpl;
 
@@ -46,6 +40,7 @@ public class AccountServiceTest {
 		  Assert.assertNotNull(accountResponseDTO);
 		  Assert.assertEquals(accountResponseDTO.getAccountNumber(),account.getAccountNumber()); 
 		  }
+	
 }
 
 

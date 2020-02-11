@@ -100,13 +100,13 @@ public class TransactionServiceImpl implements TransactionService {
 				} 
 				else {
 					//debit transaction info.
-					debitTransaction.setStatus("Completed");
+					debitTransaction.setStatus(ApplicationConstants.COMPLETED);
 					transactionRepository.save(debitTransaction);					
 					debitAccount.get().setBalance(debitAccount.get().getBalance() - debitTransaction.getAmount());
 					accountRepository.save(debitAccount.get());
 										
 					//credit transaction info
-					Transactions creditTransaction = transactionRepository.findByRefIdAndTransactionType(refId,ApplicationConstants.CREDIT);
+					Transactions creditTransaction = transactionRepository.findByRefIdAndTransactionType(refId, ApplicationConstants.CREDIT);
 					creditTransaction.setStatus("Completed");
 					transactionRepository.save(creditTransaction);
 					Optional<Accounts> creditAccount = accountRepository.findById(creditTransaction.getAccountNumber());
@@ -121,15 +121,17 @@ public class TransactionServiceImpl implements TransactionService {
 	@Override
     public TransactionResponseDTO viewTransactionsById(Long userId) {
            
-           TransactionResponseDTO transactionResponseDTO=new TransactionResponseDTO();
-           if(userId==null) {
-                  throw new UserNotFoundException("user not found");
-           }else {
-           Optional<Transactions> transactionResp = transactionRepository.findById(userId);
-           transactionResponseDTO.setTransactions(transactionResp);
-           
-           }
-           return transactionResponseDTO;
-    }
+		TransactionResponseDTO transactionResponseDTO=new TransactionResponseDTO();
+        if(userId==null) {
+               throw new UserNotFoundException("user not found");
+        }else {
+        List<Transactions> transactionResp = transactionRepository.findByUserId(userId);
+        transactionResponseDTO.setTransactions(transactionResp);
+        transactionResponseDTO.setMessage("success");
+        transactionResponseDTO.setStatusCode(HttpStatus.OK.value());
+        
+        }
+        return transactionResponseDTO;
+ }
 
 }
