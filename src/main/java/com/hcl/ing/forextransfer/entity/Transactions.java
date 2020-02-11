@@ -19,7 +19,14 @@ public class Transactions {
 	private String status;
 	private String transactionDate;
 	private Long userId;
-	
+	private Long refId;
+		
+	public Long getRefId() {
+		return refId;
+	}
+	public void setRefId(Long refId) {
+		this.refId = refId;
+	}
 	public Long getTransactionId() {
 		return transactionId;
 	}

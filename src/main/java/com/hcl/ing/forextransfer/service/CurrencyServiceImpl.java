@@ -1,5 +1,7 @@
 package com.hcl.ing.forextransfer.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 
 import org.slf4j.Logger;
@@ -17,35 +19,37 @@ import com.hcl.ing.forextransfer.helper.ExchangeRates;
 
 /**
  * Currency service to handle currency conversion implementation.
-*/
+ */
 @Service
 public class CurrencyServiceImpl implements CurrencyService {
 
 	Logger logger = LoggerFactory.getLogger(CurrencyServiceImpl.class);
-	
-	@Autowired(required=true)
+
+	@Autowired(required = true)
 	RestTemplate restTemplate;
 
 	/**
-	 * Service method to get the converted currency, It returns converted currency amount and charges. 
+	 * Service method to get the converted currency, It returns converted currency
+	 * amount and charges.
 	 */
 	@Override
 	public CurrencyDto getConvertedCurrency(String fromCurrency, String toCurrency, Double fromAmount) {
-		
+
 		logger.debug("Inside CurrencyServiceImpl :: getConvertedCurrency");
 		
-		//get latest currency values from external API.
+		// get latest currency values from external API.
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<String> entity = new HttpEntity<String>(headers);
+		HttpEntity<String> entity = new HttpEntity<>(headers);
 		ExchangeRates exc = restTemplate.exchange("https://api.exchangeratesapi.io/latest?base=" + fromCurrency,
 				HttpMethod.GET, entity, ExchangeRates.class).getBody();
 		Double unitPrice = exc.getRates().get(toCurrency);
-		
-		//set converted amount.
+
+		// set converted amount.
 		CurrencyDto currencyDto = new CurrencyDto();
-		currencyDto.setCharges((fromAmount * 1.5)/100);
-		currencyDto.setConvertAmount(unitPrice * fromAmount);
+		currencyDto.setCharges((fromAmount * 1.5) / 100);		
+		Double trimmedConvertedAmount = BigDecimal.valueOf(unitPrice * fromAmount).setScale(2, RoundingMode.HALF_UP).doubleValue();		
+		currencyDto.setConvertAmount(trimmedConvertedAmount);
 		return currencyDto;
 	}
 }
