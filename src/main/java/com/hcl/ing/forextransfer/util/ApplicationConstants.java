@@ -24,4 +24,9 @@ public class ApplicationConstants {
 	public static final String PROFICIENT = "Proficient";
 	public static final String BEGINNER = "Beginner";
 	public static final double SELF_RATING = 8;
+	
+	public static final String COMPLETED = "";
+	public static final String PENDING = "Pending";
+	public static final String DEBIT = "debit";
+	public static final String CREDIT = "credit";	
 }
