@@ -1,4 +1,4 @@
-package com.hcl.ing.forextransfer.serviceTest;
+package com.hcl.ing.forextransfer.service;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
