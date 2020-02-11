@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(InsufficientFundException.class)
 
-	public ResponseEntity<ResponseDto> InsufficientFundException() {
+	public ResponseEntity<ResponseDto> insufficientFundException() {
 
 		ResponseDto responseDto = new ResponseDto();
 
@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(InvalidAccountNumber.class)
 
-	public ResponseEntity<ResponseDto> InvalidAccountNumber() {
+	public ResponseEntity<ResponseDto> invalidAccountNumber() {
 
 		ResponseDto responseDto = new ResponseDto();
 
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseEntity<ResponseDto> UserNotFoundeException() {
+	public ResponseEntity<ResponseDto> userNotFoundeException() {
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setMessage(LibraryUtil.USER_NOT_AVALIABLE);
 		responseDto.setStatusCode(ApplicationConstants.NOTFOUND_CODE);

@@ -19,7 +19,7 @@ public class TransactionScheduledTasks {
 	@Autowired
 	TransactionService transactionService;
 	
-	@Scheduled(fixedRate = 60000)
+	@Scheduled(fixedRate = 10000)
 	public void submitTransactionTask() throws AccountNotFoundException {		
 		logger.debug("Inside TransactionScheduledTasks :: submitTransactionTask");
 		transactionService.submitTransaction();		

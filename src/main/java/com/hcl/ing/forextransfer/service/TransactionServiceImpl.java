@@ -100,7 +100,7 @@ public class TransactionServiceImpl implements TransactionService {
 				} 
 				else {
 					//debit transaction info.
-					debitTransaction.setStatus(ApplicationConstants.COMPLETED);
+					debitTransaction.setStatus("Completed");
 					transactionRepository.save(debitTransaction);					
 					debitAccount.get().setBalance(debitAccount.get().getBalance() - debitTransaction.getAmount());
 					accountRepository.save(debitAccount.get());
