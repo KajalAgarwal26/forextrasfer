@@ -1,6 +1,7 @@
 package com.hcl.ing.forextransfer.service;
 
 
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.hcl.ing.forextransfer.dto.AccountResponseDTO;
 import com.hcl.ing.forextransfer.entity.Accounts;
+import com.hcl.ing.forextransfer.exception.UserNotFoundException;
 import com.hcl.ing.forextransfer.repository.AccountRepository;
 import com.hcl.ing.forextransfer.service.AccountServiceImpl;
 
@@ -40,6 +42,23 @@ public class AccountServiceTest {
 		  Assert.assertNotNull(accountResponseDTO);
 		  Assert.assertEquals(accountResponseDTO.getAccountNumber(),account.getAccountNumber()); 
 		  }
+	  
+	  @Test(expected=UserNotFoundException.class)
+	  public void testAccountServiceDetailsNegative() {
+		 
+		  Accounts account = new Accounts();
+		  account.setAccountNumber(898328L);
+		  account.setAccountType("Saving");
+		  account.setBalance(20000d);
+		  account.setCurrency("INR");
+		  account.setUserId(1L);
+		  Mockito.when(accountRepository.findByUserId(account.getUserId())).thenReturn(account);
+		   
+		  Assert.assertEquals(404,accountServiceImpl.getAccountDetails(null)); 
+		  }
+	
+	  
+	  
 	
 }
 
