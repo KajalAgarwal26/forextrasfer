@@ -32,7 +32,7 @@ public class TransactionController {
 		 * @return transferRequestDTO 
 		 */
 	 @PostMapping(value = "/login") 
-	 public ResponseEntity<TransactionResponseDTO> usersLogin(@RequestBody TransactionRequestDTO transferRequestDTO) { 
+	 public ResponseEntity<TransactionResponseDTO> confirmTransaction(@RequestBody TransactionRequestDTO transferRequestDTO) { 
 		 LOGGER.info(ForexUtil.LOGIN_METHOD);
 		 TransactionResponseDTO transferResponseDTO = transferService.confirmTransaction(transferRequestDTO);
 		 return new ResponseEntity<>(transferResponseDTO, HttpStatus.OK);
