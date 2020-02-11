@@ -1,5 +1,7 @@
 package com.hcl.ing.forextransfer.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +51,7 @@ public class TransactionServiceImplTest {
 	  Optional<Accounts> accountsDebit = null;
 	  Optional<Accounts> accountsCredit = null;
 	  Long refId = null;
+	  Double fromAmount = 200.00;
 	  
 	  @Before
 	  public void setUp() {		  
@@ -90,51 +93,7 @@ public class TransactionServiceImplTest {
 		
 	  }
 	  
-	/*
-	 * @Test public void testConfirmTransaction() {
-	 * 
-	 * TransactionRequestDTO transferRequestDTO=new TransactionRequestDTO();
-	 * transferRequestDTO.setFromAmount(123d);
-	 * transferRequestDTO.setFromAmount(12781d);
-	 * transferRequestDTO.setDescription("askfjgasjk");
-	 * transferRequestDTO.setFromCurrency("INR");
-	 * transferRequestDTO.setToAccountNumber(456L);
-	 * transferRequestDTO.setToAmount(500d);
-	 * transferRequestDTO.setToCurrency("USD"); transferRequestDTO.setCharges(122d);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * TransactionResponseDTO transactionResponseDTO=new TransactionResponseDTO();
-	 * 
-	 * transactionResponseDTO.setMessage("success");
-	 * transactionResponseDTO.setStatus("pending");
-	 * transactionResponseDTO.setStatusCode(200); Transactions transactions=new
-	 * Transactions(); transactions.setAccountNumber(123l);
-	 * transactions.setAmount(3400d); transactions.setCurrency("INR");
-	 * transactions.setDescription("sjkfh"); transactions.setRefId(12l);
-	 * transactions.setStatus("pending");
-	 * transactions.setTransactionDate(LocalDateTime.now().toString());
-	 * transactions.setTransactionId(1l); transactions.setTransactionType("DEBIT");
-	 * transactions.setUserId(1l); Accounts accounts=new Accounts();
-	 * accounts.setAccountNumber(1l); accounts.setAccountType("savings");
-	 * accounts.setBalance(2000d); accounts.setCurrency("INR");
-	 * accounts.setUserId(1l); Optional<Accounts> accountsre= Optional.of(accounts);
-	 * 
-	 * Mockito.when(transactionService.confirmTransaction(transferRequestDTO)).
-	 * thenReturn(transactionResponseDTO);
-	 * 
-	 * Mockito.when(transactionRepository.save(transactions)).thenReturn(
-	 * transactions);
-	 * Mockito.when(transactionServiceImpl.getAccountByID(1l)).thenReturn(accountsre
-	 * );
-	 * 
-	 * Mockito.when(accountRepository.findById(1l)).thenReturn(accountsre);
-	 * 
-	 * TransactionResponseDTO confirmTransaction =
-	 * transactionServiceImpl.confirmTransaction(transferRequestDTO);
-	 * assertNotEquals(confirmTransaction.getStatusCode().intValue(),200); }
-	 */
+
 	  
 	  @Ignore
 	  @Test
@@ -143,7 +102,8 @@ public class TransactionServiceImplTest {
 		  Mockito.when(accountRepository.findById(1L)).thenReturn(accountsDebit);
 		  Mockito.when(transactionRepository.findByRefIdAndTransactionType(10L, ApplicationConstants.CREDIT)).thenReturn(creditTranasaction);
 		  Mockito.when(accountRepository.findById(1L)).thenReturn(accountsCredit);
-		  transactionServiceImpl.submitTransaction();		  
+		  transactionServiceImpl.submitTransaction();
+		  assertEquals(200, fromAmount);
 	  }
 
 	  @Test

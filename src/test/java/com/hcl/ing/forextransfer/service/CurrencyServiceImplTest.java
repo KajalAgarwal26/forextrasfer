@@ -1,5 +1,7 @@
 package com.hcl.ing.forextransfer.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +34,7 @@ public class CurrencyServiceImplTest {
 	
 	String fromCurrency = "INR";
 	String toCurrency = "USD";
-	Double fromAmount = 100000.00;
+	Double fromAmount = 200.00;
 	CurrencyDto currencyDto = new CurrencyDto();
 	ExchangeRates rates = new ExchangeRates();
 	HttpEntity<String> entity = null;
@@ -57,5 +59,6 @@ public class CurrencyServiceImplTest {
 		Mockito.when(restTemplate.exchange("https://api.exchangeratesapi.io/latest?base=" + fromCurrency, HttpMethod.GET, entity, ExchangeRates.class).getBody())
 		.thenReturn(rates);
 		currencyServiceImpl.getConvertedCurrency(fromCurrency, toCurrency, fromAmount);
+		assertEquals(200, fromAmount);
 	}	
 }
