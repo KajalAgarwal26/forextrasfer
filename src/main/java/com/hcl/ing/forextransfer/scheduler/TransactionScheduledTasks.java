@@ -1,9 +1,6 @@
 package com.hcl.ing.forextransfer.scheduler;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.security.auth.login.AccountNotFoundException;
 
 import org.slf4j.Logger;
@@ -22,10 +19,9 @@ public class TransactionScheduledTasks {
 	@Autowired
 	TransactionService transactionService;
 	
-	@Scheduled(fixedRate = 10000)
-	public void reportCurrentTime() throws AccountNotFoundException {		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-		logger.info("The time is now {}", dateFormat.format(new Date()));
+	@Scheduled(fixedRate = 60000)
+	public void submitTransactionTask() throws AccountNotFoundException {		
+		logger.debug("Inside TransactionScheduledTasks :: submitTransactionTask");
 		transactionService.submitTransaction();		
 	}
 }
