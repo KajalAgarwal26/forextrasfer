@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +35,15 @@ public class TransactionController {
 		 */
 	 @PostMapping(value = "/confirmTransaction") 
 	 public ResponseEntity<TransactionResponseDTO> confirmTransaction(@RequestBody TransactionRequestDTO transferRequestDTO) { 
-		 LOGGER.info(ForexUtil.LOGIN_METHOD);
+		 LOGGER.info(ForexUtil.CONFIRM_METHOD);
 		 TransactionResponseDTO transferResponseDTO = transferService.confirmTransaction(transferRequestDTO);
+		 return new ResponseEntity<>(transferResponseDTO, HttpStatus.OK);
+	 }
+	 
+	 @GetMapping(value = "/viewTransactions/{userId}") 
+	 public ResponseEntity<TransactionResponseDTO> viwTransactionsById(@PathVariable Long userId) { 
+		 LOGGER.info(ForexUtil.TRANSACTIONS);
+		 TransactionResponseDTO transferResponseDTO = transferService.viewTransactionsById(userId);
 		 return new ResponseEntity<>(transferResponseDTO, HttpStatus.OK);
 	 }
 }
