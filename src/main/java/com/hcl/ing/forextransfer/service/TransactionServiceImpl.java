@@ -37,7 +37,9 @@ public class TransactionServiceImpl implements TransactionService{
 		}else {
 			fromTransactions.setUserId(fromAccountDetails.get().getUserId());
 			fromTransactions.setAccountNumber(transferRequestDTO.getFromAccount());
-			fromTransactions.setAmount(transferRequestDTO.getFromAmount());
+			Double fromAmount = transferRequestDTO.getFromAmount();
+			Double charges = transferRequestDTO.getCharges();
+			fromTransactions.setAmount(fromAmount+charges);
 			fromTransactions.setCurrency(transferRequestDTO.getFromCurrency());
 			fromTransactions.setDescription(transferRequestDTO.getDescription());
 			fromTransactions.setTransactionType("DEBIT");
